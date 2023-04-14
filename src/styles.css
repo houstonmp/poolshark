@@ -1,0 +1,45 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+
+  /* background-size: 100%; */
+}
+
+body {
+  background-color: #291720;
+  color: white;
+  padding: 0;
+  margin: 0;
+
+  /* font-family: "Noto Sans Miao", sans-serif; */
+  /* font-family: "Noto Sans Miao", sans-serif; */
+}
+
+body h1 {
+  font-family: "Cookie", cursive;
+  font-size: 4.3rem;
+  margin: 20px;
+  /* font-family: "Indie Flower", cursive; */
+}
+
+body h2,
+h3 {
+  font-family: "Karma", serif;
+  font-size: 32px;
+
+  /* font-family: "Noto Sans Miao", sans-serif; */
+}
+
+body h2 {
+  color: #eefba0;
+}
+.newgame {
+  line-height: 0;
+  color: #ff85e1;
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.newgame:hover {
+  color: white;
+  filter: drop-shadow(0 2px 3px #ff85e1);
+}
