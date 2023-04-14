@@ -13,7 +13,8 @@
   font-family: "Cookie", cursive;
   font-size: 3rem;
   margin: 0;
-  filter: drop-shadow(0 0px 3px #a4e9ef);
+  color: #eefba0;
+  filter: drop-shadow(0 0px 3px #eefba0);
 }
 
 .gameDiv * {
