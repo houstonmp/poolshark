@@ -1,10 +1,16 @@
+import React, { useState } from "react";
+
 import styles from "./GameDiv.module.css";
 
-const clickHandler = (event) => {
-  console.log(event.currentTarget);
-};
-
 const GameDiv = (props) => {
+  const [location, setLocation] = useState("");
+
+  const clickHandler = (event) => {
+    console.log(event.currentTarget.id.split(""));
+    // setLocation();
+    props.updateBoard(event.currentTarget.id.split(""));
+  };
+
   return (
     <div
       key={props.id}
