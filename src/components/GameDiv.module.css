@@ -20,3 +20,14 @@
 .gameDiv * {
   align-self: center;
 }
+
+.gameDiv:hover {
+  cursor: pointer;
+  background: rgb(214, 255, 249);
+  background: radial-gradient(
+    circle,
+    rgba(214, 255, 249, 1) 0%,
+    rgba(0, 0, 0, 0) 47%
+  );
+  border-radius: 50%;
+}
