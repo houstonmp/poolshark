@@ -6,10 +6,13 @@
 }
 
 body {
-  background-color: #291720;
+  background: #291720;
+  /* background-image: url("./assets/tile_background.png"); */
   color: white;
   padding: 0;
   margin: 0;
+  position: relative;
+  min-height: 100vh;
 
   /* font-family: "Noto Sans Miao", sans-serif; */
   /* font-family: "Noto Sans Miao", sans-serif; */
@@ -42,4 +45,11 @@ body h2 {
 .newgame:hover {
   color: white;
   filter: drop-shadow(0 2px 3px #ff85e1);
+}
+
+.bottomImage {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  max-height: 30vh;
 }

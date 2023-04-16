@@ -10,7 +10,7 @@ export default function App() {
       <h1>Tic-Tac-Toe</h1>
       <GameComponent></GameComponent>
 
-      <BottomImage />
+
     </div>
   );
 }
