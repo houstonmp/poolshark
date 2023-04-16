@@ -99,6 +99,7 @@ const GameComponent = () => {
                   id={`${outerIndex}${innerIndex}`}
                   value={innerElement}
                   updateBoard={updateBoard}
+                  isVictory={isVictory}
                 />
               </div>
             );

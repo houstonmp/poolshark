@@ -6,9 +6,9 @@ const GameDiv = (props) => {
   const [location, setLocation] = useState("");
 
   const clickHandler = (event) => {
-    console.log(event.currentTarget.id.split(""));
-    // setLocation();
-    props.updateBoard(event.currentTarget.id.split(""));
+    if (!props.isVictory) {
+      props.updateBoard(event.currentTarget.id.split(""));
+    }
   };
 
   return (
