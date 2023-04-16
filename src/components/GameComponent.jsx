@@ -10,10 +10,50 @@ const GameComponent = () => {
     ["", "", ""],
   ]);
 
+  let [isVictory, setCondition] = useState(false);
+
   let [currentLetter, setLetter] = useState("X");
+
+  const checkWin = (innerMap) => {
+    for (let i = 0; i < innerMap.length; i++) {
+      let checkVert = 0;
+      let checkHor = 0;
+      for (let j = 0; j < innerMap[0].length; j++) {
+        if (innerMap[i][j] === currentLetter) {
+          console.log(currentLetter);
+          ++checkVert;
+        }
+        if (innerMap[j][i] === currentLetter) {
+          ++checkHor;
+        }
+      }
+
+      if (!isVictory && (checkVert === 3 || checkHor === 3)) {
+        console.log("Check:", true);
+        setCondition(true);
+      }
+    }
+    //Check > V Diags
+    if (innerMap[0][0] === currentLetter) {
+      if (innerMap[1][1] === currentLetter) {
+        if (innerMap[2][2] === currentLetter) {
+          setCondition(true);
+        }
+      }
+    }
+    //Check < V Diags
+    if (innerMap[0][2] === currentLetter) {
+      if (innerMap[1][1] === currentLetter) {
+        if (innerMap[2][0] === currentLetter) {
+          setCondition(true);
+        }
+      }
+    }
+  };
 
   const newGame = () => {
     setLetter("X");
+    setCondition(false);
     setBoard([
       ["", "", ""],
       ["", "", ""],
@@ -22,10 +62,9 @@ const GameComponent = () => {
   };
 
   const updateBoard = (id) => {
-    console.log("In updateBoard:", id);
     if (gameboard[parseInt(id[0])][parseInt(id[1])] === "") {
       setBoard((prev) => {
-        return prev.map((outerElement, outerIndex) => {
+        let innerMap = prev.map((outerElement, outerIndex) => {
           return outerElement.map((innerElement, innerIndex) => {
             if (
               outerIndex === parseInt(id[0]) &&
@@ -37,7 +76,10 @@ const GameComponent = () => {
             }
           });
         });
+        checkWin(innerMap);
+        return innerMap;
       });
+
       if (currentLetter === "X") {
         setLetter("O");
       } else {
@@ -67,7 +109,11 @@ const GameComponent = () => {
         <VertBar styling="neonbar_vertical" />
         <VertBar styling="neonbar_vertical" />
       </section>
-      <h2>It's {currentLetter}'s turn to move.</h2>
+      {!isVictory ? (
+        <h2>It's {currentLetter}'s turn to move.</h2>
+      ) : (
+        <h2>You win!</h2>
+      )}
       <h3 className="newgame" onClick={newGame}>
         new game
       </h3>
