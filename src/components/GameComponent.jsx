@@ -62,6 +62,7 @@ const GameComponent = () => {
   const newGame = () => {
     setLetter("X");
     setCondition(false);
+    localStorage.clear();
     setBoard([
       ["", "", ""],
       ["", "", ""],
