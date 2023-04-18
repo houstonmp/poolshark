@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./GameComponent.module.css";
 import GameDiv from "./GameDiv";
 import VertBar from "./VertBar";
@@ -9,14 +9,6 @@ const GameComponent = () => {
     ["", "", ""],
     ["", "", ""],
   ]);
-
-  useEffect(() => {
-    const tempGameBoard = localStorage.getItem("gameBoard");
-    if (tempGameBoard) {
-      console.log("Loading Game");
-      setBoard(JSON.parse(tempGameBoard));
-    }
-  }, []);
 
   let [isVictory, setCondition] = useState(false);
 
@@ -62,7 +54,6 @@ const GameComponent = () => {
   const newGame = () => {
     setLetter("X");
     setCondition(false);
-    localStorage.clear();
     setBoard([
       ["", "", ""],
       ["", "", ""],
@@ -86,7 +77,6 @@ const GameComponent = () => {
           });
         });
         checkWin(innerMap);
-        localStorage.setItem("gameBoard", JSON.stringify(innerMap));
         return innerMap;
       });
 

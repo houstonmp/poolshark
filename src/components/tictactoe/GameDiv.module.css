@@ -1,0 +1,33 @@
+.gameDiv {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.gameDiv::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+}
+.gamepiece {
+  font-family: "Cookie", cursive;
+  font-size: 3rem;
+  margin: 0;
+  color: white;
+  filter: drop-shadow(0 0px 3px #a4e9ef);
+}
+
+.gameDiv * {
+  align-self: center;
+}
+
+.gameDiv:hover {
+  cursor: pointer;
+  background: rgb(214, 255, 249);
+  background: radial-gradient(
+    circle,
+    rgba(214, 255, 249, 1) 0%,
+    rgba(0, 0, 0, 0) 47%
+  );
+  border-radius: 50%;
+}
