@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import ReactDom from "react-dom";
 import styles from "./GameComponent.module.css";
 import GameDiv from "./GameDiv";
+import Modal from "./UI/Modal";
 import VertBar from "./VertBar";
 
 const GameComponent = () => {
@@ -9,6 +11,11 @@ const GameComponent = () => {
     ["", "", ""],
     ["", "", ""],
   ]);
+
+  const modalObj = {
+    title: "New Game",
+    message: "Please enter player one's Name",
+  };
 
   useEffect(() => {
     const tempGameBoard = localStorage.getItem("gameBoard");
@@ -99,7 +106,20 @@ const GameComponent = () => {
   };
 
   return (
-    <div>
+    <>
+      <Modal title={modalObj.title} message={modalObj.message}>
+        <form>
+          <label HTMLfor="playerOne">Player 1</label>
+          <input type="text" name="playerOne" />
+          <label HTMLfor="playerTwo">Player 2</label>
+          <input type="text" name="playerTwo" />
+          <footer>
+            <button>Submit</button>
+            <button>Close</button>
+          </footer>
+        </form>
+      </Modal>
+
       <section className={styles.board}>
         {gameboard.map((outerElement, outerIndex) => {
           return outerElement.map((innerElement, innerIndex) => {
@@ -128,7 +148,7 @@ const GameComponent = () => {
       <h3 className="newgame" onClick={newGame}>
         new game
       </h3>
-    </div>
+    </>
   );
 };
 
