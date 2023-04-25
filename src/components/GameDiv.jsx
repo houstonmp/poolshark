@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import styles from "./GameDiv.module.css";
 
 const GameDiv = (props) => {
-  const [location, setLocation] = useState("");
-
   const clickHandler = (event) => {
     if (!props.isVictory) {
       props.updateBoard(event.currentTarget.id.split(""));

@@ -17,64 +17,116 @@ const GameComponent = () => {
     message: "Please enter player one's Name",
   };
 
+  const [isNewGame, setNewGame] = useState(true);
+  const [isVictory, setCondition] = useState(false);
+  // const [currentLetter, setLetter] = useState("X");
+  const [playerObj, setPlayer] = useState({
+    player1: "Player 1",
+    player2: "Player 2",
+    currentPlayer: "Player 1",
+    currentLetter: "X",
+  });
+
   useEffect(() => {
     const tempGameBoard = localStorage.getItem("gameBoard");
-    if (tempGameBoard) {
+    const tempPlayer = localStorage.getItem("playerData");
+    if (tempGameBoard && !isVictory) {
+      setNewGame(false);
       console.log("Loading Game");
+      setPlayer(JSON.parse(tempPlayer));
       setBoard(JSON.parse(tempGameBoard));
+    } else {
+      setNewGame(true);
     }
   }, []);
-
-  let [isVictory, setCondition] = useState(false);
-
-  let [currentLetter, setLetter] = useState("X");
 
   const checkWin = (innerMap) => {
     for (let i = 0; i < innerMap.length; i++) {
       let checkVert = 0;
       let checkHor = 0;
       for (let j = 0; j < innerMap[0].length; j++) {
-        if (innerMap[i][j] === currentLetter) {
-          console.log(currentLetter);
+        if (innerMap[i][j] === playerObj.currentLetter) {
           ++checkVert;
         }
-        if (innerMap[j][i] === currentLetter) {
+        if (innerMap[j][i] === playerObj.currentLetter) {
           ++checkHor;
         }
       }
 
       if (!isVictory && (checkVert === 3 || checkHor === 3)) {
-        console.log("Check:", true);
         setCondition(true);
       }
     }
+
     //Check > V Diags
-    if (innerMap[0][0] === currentLetter) {
-      if (innerMap[1][1] === currentLetter) {
-        if (innerMap[2][2] === currentLetter) {
+    if (innerMap[0][0] === playerObj.currentLetter) {
+      if (innerMap[1][1] === playerObj.currentLetter) {
+        if (innerMap[2][2] === playerObj.currentLetter) {
           setCondition(true);
         }
       }
     }
     //Check < V Diags
-    if (innerMap[0][2] === currentLetter) {
-      if (innerMap[1][1] === currentLetter) {
-        if (innerMap[2][0] === currentLetter) {
+    if (innerMap[0][2] === playerObj.currentLetter) {
+      if (innerMap[1][1] === playerObj.currentLetter) {
+        if (innerMap[2][0] === playerObj.currentLetter) {
           setCondition(true);
         }
+      }
+    }
+    if (!isVictory) {
+      if (playerObj.currentLetter === "X") {
+        console.log(playerObj.currentPlayer, isVictory);
+        setPlayer((prev) => {
+          let tempObj = {
+            player1: prev.player1,
+            player2: prev.player2,
+            currentPlayer: prev.player2,
+            currentLetter: "O",
+          };
+          localStorage.setItem("playerData", JSON.stringify(tempObj));
+          return tempObj;
+        });
+      } else if (playerObj.currentLetter === "O") {
+        console.log(playerObj.currentPlayer, isVictory);
+        setPlayer((prev) => {
+          let tempObj = {
+            player1: prev.player1,
+            player2: prev.player2,
+            currentPlayer: prev.player1,
+            currentLetter: "X",
+          };
+          localStorage.setItem("playerData", JSON.stringify(tempObj));
+          return tempObj;
+        });
       }
     }
   };
 
   const newGame = () => {
-    setLetter("X");
-    setCondition(false);
     localStorage.clear();
     setBoard([
       ["", "", ""],
       ["", "", ""],
       ["", "", ""],
     ]);
+  };
+
+  const startGameHandler = (e) => {
+    e.preventDefault();
+    setPlayer({
+      player1: e.target.children[1].value,
+      player2: e.target.children[3].value,
+      currentPlayer: e.target.children[1].value,
+      currentLetter: "X",
+    });
+    setCondition(false);
+    setNewGame(false);
+    newGame();
+  };
+
+  const onNewGameHandler = () => {
+    setNewGame(true);
   };
 
   const updateBoard = (id) => {
@@ -86,7 +138,7 @@ const GameComponent = () => {
               outerIndex === parseInt(id[0]) &&
               innerIndex === parseInt(id[1])
             ) {
-              return currentLetter;
+              return playerObj.currentLetter;
             } else {
               return prev[outerIndex][innerIndex];
             }
@@ -96,29 +148,25 @@ const GameComponent = () => {
         localStorage.setItem("gameBoard", JSON.stringify(innerMap));
         return innerMap;
       });
-
-      if (currentLetter === "X") {
-        setLetter("O");
-      } else {
-        setLetter("X");
-      }
     }
   };
 
   return (
     <>
-      <Modal title={modalObj.title} message={modalObj.message}>
-        <form>
-          <label HTMLfor="playerOne">Player 1</label>
-          <input type="text" name="playerOne" />
-          <label HTMLfor="playerTwo">Player 2</label>
-          <input type="text" name="playerTwo" />
-          <footer>
-            <button>Submit</button>
-            <button>Close</button>
-          </footer>
-        </form>
-      </Modal>
+      {isNewGame && (
+        <Modal title={modalObj.title} message={modalObj.message}>
+          <form onSubmit={startGameHandler}>
+            <label htmlFor="playerOne">Player 1</label>
+            <input type="text" name="playerOne" />
+            <label htmlFor="playerTwo">Player 2</label>
+            <input type="text" name="playerTwo" />
+            <footer>
+              <button>Close</button>
+              <button type="submit">Submit</button>
+            </footer>
+          </form>
+        </Modal>
+      )}
 
       <section className={styles.board}>
         {gameboard.map((outerElement, outerIndex) => {
@@ -126,10 +174,10 @@ const GameComponent = () => {
             return (
               <div>
                 <GameDiv
+                  key={`${outerIndex}${innerIndex}${innerElement}${innerIndex}`}
                   id={`${outerIndex}${innerIndex}`}
                   value={innerElement}
                   updateBoard={updateBoard}
-                  isVictory={isVictory}
                 />
               </div>
             );
@@ -141,13 +189,13 @@ const GameComponent = () => {
         <VertBar styling="neonbar_vertical" />
       </section>
       {!isVictory ? (
-        <h2>It's {currentLetter}'s turn to move.</h2>
+        <h2>It's {playerObj.currentPlayer}'s turn to move.</h2>
       ) : (
-        <h2>You win!</h2>
+        <h2>{playerObj.currentPlayer} wins!</h2>
       )}
-      <h3 className="newgame" onClick={newGame}>
+      <button className="newgame" onClick={onNewGameHandler}>
         new game
-      </h3>
+      </button>
     </>
   );
 };
