@@ -26,7 +26,8 @@ body h1 {
 }
 
 body h2,
-h3 {
+h3,
+.newgame {
   font-family: "Karma", serif;
   font-size: 32px;
 
@@ -41,6 +42,8 @@ body h2 {
   color: #ff85e1;
   cursor: pointer;
   transition: all 0.35s;
+  background: none;
+  border: none;
 }
 .newgame:hover {
   color: white;
