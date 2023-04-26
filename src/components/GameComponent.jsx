@@ -114,19 +114,29 @@ const GameComponent = () => {
 
   const startGameHandler = (e) => {
     e.preventDefault();
-    setPlayer({
-      player1: e.target.children[1].value,
-      player2: e.target.children[3].value,
-      currentPlayer: e.target.children[1].value,
-      currentLetter: "X",
-    });
+    if (e.target.children[1].value) {
+      setPlayer({
+        player1: e.target.children[1].value,
+        player2: e.target.children[3].value,
+        currentPlayer: e.target.children[1].value,
+        currentLetter: "X",
+      });
+    } else {
+      setPlayer({
+        player1: "Player 1",
+        player2: "Player 2",
+        currentPlayer: "Player 1",
+        currentLetter: "X",
+      });
+    }
+
     setCondition(false);
     setNewGame(false);
     newGame();
   };
 
-  const onNewGameHandler = () => {
-    setNewGame(true);
+  const onGameHandler = () => {
+    setNewGame((prev) => !isNewGame);
   };
 
   const updateBoard = (id) => {
@@ -161,7 +171,9 @@ const GameComponent = () => {
             <label htmlFor="playerTwo">Player 2</label>
             <input type="text" name="playerTwo" />
             <footer>
-              <button>Close</button>
+              <button type="button" onClick={onGameHandler}>
+                Close
+              </button>
               <button type="submit">Submit</button>
             </footer>
           </form>
@@ -193,7 +205,7 @@ const GameComponent = () => {
       ) : (
         <h2>{playerObj.currentPlayer} wins!</h2>
       )}
-      <button className="newgame" onClick={onNewGameHandler}>
+      <button className="newgame" onClick={onGameHandler}>
         new game
       </button>
     </>
