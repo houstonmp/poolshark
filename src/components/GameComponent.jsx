@@ -74,33 +74,6 @@ const GameComponent = () => {
         }
       }
     }
-    if (!isVictory) {
-      if (playerObj.currentLetter === "X") {
-        console.log(playerObj.currentPlayer, isVictory);
-        setPlayer((prev) => {
-          let tempObj = {
-            player1: prev.player1,
-            player2: prev.player2,
-            currentPlayer: prev.player2,
-            currentLetter: "O",
-          };
-          localStorage.setItem("playerData", JSON.stringify(tempObj));
-          return tempObj;
-        });
-      } else if (playerObj.currentLetter === "O") {
-        console.log(playerObj.currentPlayer, isVictory);
-        setPlayer((prev) => {
-          let tempObj = {
-            player1: prev.player1,
-            player2: prev.player2,
-            currentPlayer: prev.player1,
-            currentLetter: "X",
-          };
-          localStorage.setItem("playerData", JSON.stringify(tempObj));
-          return tempObj;
-        });
-      }
-    }
   };
 
   const newGame = () => {
@@ -158,6 +131,33 @@ const GameComponent = () => {
         localStorage.setItem("gameBoard", JSON.stringify(innerMap));
         return innerMap;
       });
+    }
+    if (!isVictory) {
+      if (playerObj.currentLetter === "X" && id) {
+        console.log(playerObj.currentPlayer, isVictory);
+        setPlayer((prev) => {
+          let tempObj = {
+            player1: prev.player1,
+            player2: prev.player2,
+            currentPlayer: prev.player2,
+            currentLetter: "O",
+          };
+          localStorage.setItem("playerData", JSON.stringify(tempObj));
+          return tempObj;
+        });
+      } else if (playerObj.currentLetter === "O") {
+        console.log(playerObj.currentPlayer, isVictory);
+        setPlayer((prev) => {
+          let tempObj = {
+            player1: prev.player1,
+            player2: prev.player2,
+            currentPlayer: prev.player1,
+            currentLetter: "X",
+          };
+          localStorage.setItem("playerData", JSON.stringify(tempObj));
+          return tempObj;
+        });
+      }
     }
   };
 

@@ -4,7 +4,7 @@ import styles from "./GameDiv.module.css";
 
 const GameDiv = (props) => {
   const clickHandler = (event) => {
-    if (!props.isVictory) {
+    if (!props.isVictory && !event.currentTarget.children[0].textContent) {
       props.updateBoard(event.currentTarget.id.split(""));
     }
   };
