@@ -27,6 +27,8 @@ const GameComponent = () => {
     currentLetter: "X",
   });
 
+  const [winner, setWinner] = useState("");
+
   useEffect(() => {
     const tempGameBoard = localStorage.getItem("gameBoard");
     const tempPlayer = localStorage.getItem("playerData");
@@ -55,6 +57,7 @@ const GameComponent = () => {
 
       if (!isVictory && (checkVert === 3 || checkHor === 3)) {
         setCondition(true);
+        setWinner(playerObj.currentPlayer);
       }
     }
 
@@ -63,6 +66,7 @@ const GameComponent = () => {
       if (innerMap[1][1] === playerObj.currentLetter) {
         if (innerMap[2][2] === playerObj.currentLetter) {
           setCondition(true);
+          setWinner(playerObj.currentPlayer);
         }
       }
     }
@@ -71,6 +75,7 @@ const GameComponent = () => {
       if (innerMap[1][1] === playerObj.currentLetter) {
         if (innerMap[2][0] === playerObj.currentLetter) {
           setCondition(true);
+          setWinner(playerObj.currentPlayer);
         }
       }
     }
@@ -204,7 +209,7 @@ const GameComponent = () => {
       {!isVictory ? (
         <h2>It's {playerObj.currentPlayer}'s turn to move.</h2>
       ) : (
-        <h2>{playerObj.currentPlayer} wins!</h2>
+        <h2>{winner} wins!</h2>
       )}
       <button className="newgame" onClick={onGameHandler}>
         new game
