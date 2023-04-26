@@ -4,6 +4,7 @@
   justify-content: center;
   background-color: #0b4f6c;
   color: white;
+  filter: drop-shadow(3px 2px 4px #eefba0);
 }
 
 svg {
