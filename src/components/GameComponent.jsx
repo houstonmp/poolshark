@@ -19,7 +19,7 @@ const GameComponent = () => {
   };
 
   const [isNewGame, setNewGame] = useState(true);
-  const [isVictory, setCondition] = useState(false);
+  const [isVictory, setCondition] = useState(false); //Get rid of all isVictory and use empty string
   // const [currentLetter, setLetter] = useState("X");
   const [playerObj, setPlayer] = useState({
     player1: "Player 1",
