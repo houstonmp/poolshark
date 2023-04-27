@@ -1,9 +1,10 @@
 .modal_main {
   position: fixed;
-  top: 30%;
-  left: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
-  height: 50vh;
+  max-width: 500px;
   z-index: 11;
   background-color: #faebd7d4;
   border-radius: 10px;
@@ -15,9 +16,9 @@
   background-color: #291720;
   border-radius: 10px 10px 0 0;
 }
-.modal_main > div * {
+.modal_main > input {
   width: 80%;
-  margin: 0.2rem 10%;
+  margin: 0;
   padding: 0;
 }
 
@@ -25,6 +26,13 @@
   width: 40%;
   height: 1.5rem;
   margin: 5%;
+  border: none;
+  background-color: #0b4f6c;
+  color: white;
+  border-radius: 5px;
+}
+.modal_main footer > button:hover {
+  background-color: #1d6b8c;
 }
 
 h3 {
