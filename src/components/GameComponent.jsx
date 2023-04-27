@@ -4,6 +4,7 @@ import styles from "./GameComponent.module.css";
 import GameDiv from "./GameDiv";
 import Modal from "./UI/Modal";
 import VertBar from "./VertBar";
+import Form from "./UI/Form";
 
 const GameComponent = () => {
   let [gameboard, setBoard] = useState([
@@ -90,23 +91,9 @@ const GameComponent = () => {
     ]);
   };
 
-  const startGameHandler = (e) => {
-    e.preventDefault();
-    if (e.target.children[1].value) {
-      setPlayer({
-        player1: e.target.children[1].value,
-        player2: e.target.children[3].value,
-        currentPlayer: e.target.children[1].value,
-        currentLetter: "X",
-      });
-    } else {
-      setPlayer({
-        player1: "Player 1",
-        player2: "Player 2",
-        currentPlayer: "Player 1",
-        currentLetter: "X",
-      });
-    }
+  const startGameHandler = (playerValues) => {
+    console.log("startGameHandler", playerValues);
+    setPlayer(playerValues);
 
     setCondition(false);
     setNewGame(false);
@@ -170,18 +157,10 @@ const GameComponent = () => {
     <>
       {isNewGame && (
         <Modal title={modalObj.title} message={modalObj.message}>
-          <form onSubmit={startGameHandler}>
-            <label htmlFor="playerOne">Player 1</label>
-            <input type="text" name="playerOne" />
-            <label htmlFor="playerTwo">Player 2</label>
-            <input type="text" name="playerTwo" />
-            <footer>
-              <button type="button" onClick={onGameHandler}>
-                Close
-              </button>
-              <button type="submit">Submit</button>
-            </footer>
-          </form>
+          <Form
+            onGameHandler={onGameHandler}
+            startGameHandler={startGameHandler}
+          />
         </Modal>
       )}
 
