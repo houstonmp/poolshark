@@ -19,7 +19,7 @@ const GameComponent = () => {
   };
 
   const [isNewGame, setNewGame] = useState(true);
-  const [isVictory, setCondition] = useState(false);
+  const [isVictory, setCondition] = useState(false); //Get rid of all isVictory and use empty string
   // const [currentLetter, setLetter] = useState("X");
   const [playerObj, setPlayer] = useState({
     player1: "Player 1",
@@ -33,11 +33,13 @@ const GameComponent = () => {
   useEffect(() => {
     const tempGameBoard = localStorage.getItem("gameBoard");
     const tempPlayer = localStorage.getItem("playerData");
+    const tempWinner = localStorage.getItem("winner");
     if (tempGameBoard && !isVictory) {
       setNewGame(false);
       console.log("Loading Game");
       setPlayer(JSON.parse(tempPlayer));
       setBoard(JSON.parse(tempGameBoard));
+      setWinner(JSON.parse(tempWinner));
     } else {
       setNewGame(true);
     }
@@ -59,6 +61,7 @@ const GameComponent = () => {
       if (!isVictory && (checkVert === 3 || checkHor === 3)) {
         setCondition(true);
         setWinner(playerObj.currentPlayer);
+        localStorage.setItem("winner", JSON.stringify(playerObj.currentPlayer));
       }
     }
 
@@ -68,6 +71,10 @@ const GameComponent = () => {
         if (innerMap[2][2] === playerObj.currentLetter) {
           setCondition(true);
           setWinner(playerObj.currentPlayer);
+          localStorage.setItem(
+            "winner",
+            JSON.stringify(playerObj.currentPlayer)
+          );
         }
       }
     }
@@ -77,6 +84,10 @@ const GameComponent = () => {
         if (innerMap[2][0] === playerObj.currentLetter) {
           setCondition(true);
           setWinner(playerObj.currentPlayer);
+          localStorage.setItem(
+            "winner",
+            JSON.stringify(playerObj.currentPlayer)
+          );
         }
       }
     }
@@ -95,6 +106,7 @@ const GameComponent = () => {
     console.log("startGameHandler", playerValues);
     setPlayer(playerValues);
 
+    setWinner("");
     setCondition(false);
     setNewGame(false);
     newGame();
@@ -174,7 +186,7 @@ const GameComponent = () => {
                   id={`${outerIndex}${innerIndex}`}
                   value={innerElement}
                   updateBoard={updateBoard}
-                  isVictory={isVictory}
+                  isVictory={winner}
                 />
               </div>
             );
@@ -185,7 +197,7 @@ const GameComponent = () => {
         <VertBar styling="neonbar_vertical" />
         <VertBar styling="neonbar_vertical" />
       </section>
-      {!isVictory ? (
+      {!winner ? (
         <h2>It's {playerObj.currentPlayer}'s turn to move.</h2>
       ) : (
         <h2>{winner} wins!</h2>
