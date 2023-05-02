@@ -34,6 +34,7 @@ I based my design off of an image that had glowing neon bar lights. I wanted to 
 ## Acknowledgements
 
  - [README Generated with readme.so](https://readme.so/editor)
+ - The particle.js implementation is based on Caleb Linden's particle implementation which can be found [**here at this CodePen**](https://codepen.io/CalebLinden/pen/vaQJKd).
 
 
 ## My Partners in Crime
