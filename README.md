@@ -41,5 +41,5 @@ I based my design off of an image that had glowing neon bar lights. I wanted to 
 Check out these other awesome creators I worked with!
 
 - Myro Joy Lee - [Github](https://github.com/myrojoylee) | [Tic-Tac-Toe Project](https://github.com/myrojoylee/tic-tac-toe)
-- Annette Sheriff - [Github](https://github.com/myrojoylee) | [Tic-Tac-Toe Project](https://ohnetters-tic-tac-toe.netlify.app/) 
+- Annette Sheriff - [Github](https://github.com/ohnetter) | [Tic-Tac-Toe Project](https://ohnetters-tic-tac-toe.netlify.app/) 
 - Andres Romero - [Github](https://github.com/aromero18020) 
