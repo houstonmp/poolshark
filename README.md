@@ -12,13 +12,9 @@ This website came from a design challenge that I ran within a discord server tha
 Beyond React, I also utilized [particles.js](https://particles.js.org/) in order to create the colored bubbles that drift across the screen. Check out some of the other submissions in the Acknowledgement section down below!
 ## Demo - check it out [*here*](https://chimerical-puppy-f8d0d5.netlify.app/)
 
-![PoolShark Large Image](/src/assets/poolshark-github.gif "Pool Shark Large Image")
+![PoolShark Large Image](/src/assets/poolshark-github.gif "Pool Shark Large Image") ![PoolShark Small Image](/src/assets/poolshark-github-small.gif "Pool Shark Small Image")
 
-*Demo on Large Screen Device*
-
-![PoolShark Small Image](/src/assets/poolshark-github-small.gif "Pool Shark Small Image")
-
-*Demo on Small Screen Devices*
+*Demo on Large Screen Device (Left) - Small (Right)*
 
 ## Roadmap
 
