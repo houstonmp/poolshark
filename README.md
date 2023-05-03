@@ -7,14 +7,18 @@ A simple site to play small webgames with friends.
 
 ## Description
 
-This website came from a design challenge that I ran within a discord server that I am a part of. I had the idea to create a small project to practice using React.js. I felt the Tic-Tac-Toe was a natural progression to what I had already been working on within the framework. 
+This project came from a friendly design challenge that I ran within a small discord group I am in. I felt that a Tic-Tac-Toe game was a natural progression to what I had already been working on within React.js and opened it up to the others within the group.
 
-Beyond React, I also utilized [particles.js](https://particles.js.org/) in order to create the colored bubbles that drift across the screen. Check out some of the other submissions in the Acknowledgement section down below!
+Beyond React, I also utilized [particles.js](https://particles.js.org/) in order to create the colored bubbles that drift across the screen. Check out some of the other discord submissions in the Acknowledgement section down below!
 ## Demo - check it out [*here*](https://chimerical-puppy-f8d0d5.netlify.app/)
 
-![PoolShark Large Image](/src/assets/poolshark-github.gif "Pool Shark Large Image") ![PoolShark Small Image](/src/assets/poolshark-github-small.gif "Pool Shark Small Image")
+*Demo on Large Screen Device*  
+<img src="/src/assets/poolshark-github.gif" alt="Pool Shark Large Image" width="60%" />
 
-*Demo on Large Screen Device (Left) - Small (Right)*
+*Demo on Small Screen Device*  
+<img src="/src/assets/poolshark-github-small.gif" alt="Pool Shark Small Image" width="30%" />
+
+
 
 ## Roadmap
 
