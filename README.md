@@ -12,23 +12,28 @@ This website came from a design challenge that I ran within a discord server tha
 Beyond React, I also utilized [particles.js](https://particles.js.org/) in order to create the colored bubbles that drift across the screen. Check out some of the other submissions in the Acknowledgement section down below!
 ## Demo - check it out [*here*](https://chimerical-puppy-f8d0d5.netlify.app/)
 
-<Insert gif and link to demo>
+![PoolShark Large Image](/src/assets/poolshark-github.gif "Pool Shark Large Image")
 
+*Demo on Large Screen Device*
+
+![PoolShark Small Image](/src/assets/poolshark-github-small.gif "Pool Shark Small Image")
+
+*Demo on Small Screen Devices*
 
 ## Roadmap
 
 - Add more games:
     - Connect 4
-    - ?Chess?
-    - ?Pool?
+    - Othello
+    - TBD
 
 ## My Design Process
 
 I based my design off of an image that had glowing neon bar lights. I wanted to experiment with styling the letters and borders with css so that they appeared as if they were glowing. I thought **PoolShark** would be a good name considering its relationship to billiards and bar-games. The underwater theme was designed within Figma and implemented within React.js. I added the particles last because I felt that the website needed a bit more life.
 
-<Insert Figma Image>
+![PoolShark Figma Image](/src/assets/Poolshark-Figma.png "PoolShark Figma Design")
 
-*Original design within Figma*
+*Original design in Figma*
 
 
 ## Acknowledgements
